@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lorem Lorem · offline lorem-ipsum generator</title>
-<meta name="description" content="A tiny, private, offline lorem-ipsum generator. Six languages including Persian. Everything happens in your browser — no tracking, no cookies, no network calls.">
+<meta name="description" content="A tiny, private, offline lorem-ipsum generator. Seven languages including English and Persian. Everything happens in your browser — no tracking, no cookies, no network calls.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f4efe5" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#131010" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lorem Lorem">
-<meta property="og:description" content="Offline, private lorem-ipsum generator — six languages including Persian, five output shapes, one file.">
+<meta property="og:description" content="Offline, private lorem-ipsum generator — seven languages including English and Persian, five output shapes, one file.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23b45309'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-style='italic' font-weight='bold' font-size='32' fill='%23fdf6ec' text-anchor='middle'%3EL%C2%B7L%3C/text%3E%3C/svg%3E">
 <!-- The only external references on the page: optional webfonts (display serif + Persian).
      Block them or go offline and the app keeps working on system fonts. -->
@@ -152,7 +152,7 @@ footer a:hover{color:var(--accent)}
 
   <header>
     <div>
-      <p class="kicker">Six languages<span class="dot">·</span>five shapes<span class="dot">·</span>zero servers</p>
+      <p class="kicker">Seven languages<span class="dot">·</span>five shapes<span class="dot">·</span>zero servers</p>
       <h1>lorem <em>lorem</em></h1>
       <p class="tagline">A tiny lorem-ipsum generator that never leaves your browser.</p>
     </div>
@@ -173,6 +173,7 @@ footer a:hover{color:var(--accent)}
         <span class="lbl">Language</span>
         <div class="pills" role="radiogroup" aria-label="Language">
           <input type="radio" name="lang" id="l-la" value="latin" checked><label for="l-la">Latin</label>
+          <input type="radio" name="lang" id="l-en" value="en"><label for="l-en">English</label>
           <input type="radio" name="lang" id="l-es" value="es"><label for="l-es">Español</label>
           <input type="radio" name="lang" id="l-fr" value="fr"><label for="l-fr">Français</label>
           <input type="radio" name="lang" id="l-de" value="de"><label for="l-de">Deutsch</label>
@@ -260,26 +261,30 @@ latin:{dir:'ltr',lang:'la',cased:true,comma:',',
  words:'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip ex ea commodo consequat duis aute irure in reprehenderit voluptate velit esse cillum eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt culpa qui officia deserunt mollit anim id est curabitur pretium tincidunt lacus laoreet sodales tortor interdum augue suspendisse blandit hendrerit lobortis vivamus vestibulum diam urna curae pharetra molestie arcu morbi sem mi faucibus rutrum aenean primis ornare mollis phasellus bibendum natoque penatibus sociis nascetur ridiculus mus'.split(' '),
  classic:'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'.split(' '),
  start:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
+en:{dir:'ltr',lang:'en',cased:true,comma:',',
+ words:'the of and to in for on with as at by from or but not it its this that these those design text page content layout style font color margin title link data form image list table button window code system project team time place world group point value man woman child city door book paper light day night year hand face street car train tree flower sky sea sun moon water earth fire air music art game party friend love life dream bed chair bread coffee word sentence paragraph letter chapter story idea thought mind heart eye ear sound simple clear soft quick slow hidden bright gentle good new fresh small large calm warm cool quiet reader writer maker lorem lorem lorem'.split(' '),
+ classic:'lorem ipsum is simply dummy text of the printing and typesetting industry'.split(' '),
+ start:'Lorem ipsum is simply dummy text of the printing and typesetting industry.'},
 es:{dir:'ltr',lang:'es',cased:true,comma:',',
- words:'el la los las un una de en con por para sin sobre entre como muy más pero porque cuando donde aquí siempre nunca todo nada algo alguien palabra texto página contenido diseño lectura estilo fuente color margen título enlace datos formulario imagen lista tabla botón ventana código sistema proyecto equipo tiempo parte lugar mundo forma caso grupo punto hombre mujer niño ciudad casa puerta mesa libro papel pluma luz día noche año mano cara calle coche tren árbol flor cielo mar sol luna agua tierra fuego aire música cine arte juego fiesta amigo amor vida sueño cama silla comida pan café'.split(' '),
- classic:'el diseño de la página es una forma clara y sencilla de ordenar el contenido para'.split(' '),
- start:'El diseño de la página es una forma clara y sencilla de ordenar el contenido para una buena lectura del texto.'},
+ words:'el la los las un una de en con por para sin sobre entre como muy más pero porque cuando donde aquí siempre nunca todo nada algo alguien palabra texto página contenido diseño lectura estilo fuente color margen título enlace datos formulario imagen lista tabla botón ventana código sistema proyecto equipo tiempo parte lugar mundo forma caso grupo punto hombre mujer niño ciudad casa puerta mesa libro papel pluma luz día noche año mano cara calle coche tren árbol flor cielo mar sol luna agua tierra fuego aire música cine arte juego fiesta amigo amor vida sueño cama silla comida pan café lorem lorem lorem'.split(' '),
+ classic:'lorem ipsum el diseño de la página es una forma clara y sencilla de ordenar el contenido para'.split(' '),
+ start:'Lorem ipsum, el diseño de la página es una forma clara y sencilla de ordenar el contenido para una buena lectura del texto.'},
 fr:{dir:'ltr',lang:'fr',cased:true,comma:',',
- words:'le la les un une des de en avec pour par sans sur entre comme très plus mais parce quand ici toujours jamais tout rien quelque texte mot page contenu design lecture style police couleur marge titre lien données formulaire image liste tableau bouton fenêtre code système projet équipe temps partie lieu monde forme cas groupe point valeur homme femme enfant ville porte table livre papier plume lumière jour nuit année main visage rue voiture train arbre fleur ciel mer soleil lune eau terre feu air musique cinéma art jeu fête ami amour vie rêve lit chaise pain café'.split(' '),
- classic:'le design de la page est une manière claire et simple d’ordonner le contenu pour'.split(' '),
- start:'Le design de la page est une manière claire et simple d’ordonner le contenu pour une bonne lecture du texte.'},
+ words:'le la les un une des de en avec pour par sans sur entre comme très plus mais parce quand ici toujours jamais tout rien quelque texte mot page contenu design lecture style police couleur marge titre lien données formulaire image liste tableau bouton fenêtre code système projet équipe temps partie lieu monde forme cas groupe point valeur homme femme enfant ville porte table livre papier plume lumière jour nuit année main visage rue voiture train arbre fleur ciel mer soleil lune eau terre feu air musique cinéma art jeu fête ami amour vie rêve lit chaise pain café lorem lorem lorem'.split(' '),
+ classic:'lorem ipsum le design de la page est une manière claire et simple d’ordonner le contenu pour'.split(' '),
+ start:'Lorem ipsum, le design de la page est une manière claire et simple d’ordonner le contenu pour une bonne lecture du texte.'},
 de:{dir:'ltr',lang:'de',cased:true,comma:',',
- words:'der die das ein eine den dem des mit für von ohne über unter zwischen wie sehr mehr aber weil wenn hier immer nie alles nichts Text Wort Seite Inhalt Gestaltung Lesart Stil Schrift Farbe Rand Titel Link Daten Formular Bild Liste Tabelle Knopf Fenster Code System Projekt Team Zeit Teil Ort Welt Form Fall Gruppe Punkt Wert Bereich Mann Frau Kind Stadt Tür Tisch Buch Heft Papier Feder Licht Tag Nacht Jahr Hand Gesicht Straße Zug Baum Blume Himmel Meer Sonne Mond Wasser Erde Feuer Luft Musik Spiel Fest Freund Liebe Leben Traum Bett Stuhl Brot'.split(' '),
- classic:'Das Design der Seite ist eine klare und einfache Weise den Inhalt für eine gute Lesbarkeit'.split(' '),
- start:'Das Design der Seite ist eine klare und einfache Weise, den Inhalt für eine gute Lesbarkeit des Textes zu ordnen.'},
+ words:'der die das ein eine den dem des mit für von ohne über unter zwischen wie sehr mehr aber weil wenn hier immer nie alles nichts Text Wort Seite Inhalt Gestaltung Lesart Stil Schrift Farbe Rand Titel Link Daten Formular Bild Liste Tabelle Knopf Fenster Code System Projekt Team Zeit Teil Ort Welt Form Fall Gruppe Punkt Wert Bereich Mann Frau Kind Stadt Tür Tisch Buch Heft Papier Feder Licht Tag Nacht Jahr Hand Gesicht Straße Zug Baum Blume Himmel Meer Sonne Mond Wasser Erde Feuer Luft Musik Spiel Fest Freund Liebe Leben Traum Bett Stuhl Brot lorem lorem lorem'.split(' '),
+ classic:'lorem ipsum das Design der Seite ist eine klare und einfache Weise den Inhalt für eine gute Lesbarkeit'.split(' '),
+ start:'Lorem ipsum, das Design der Seite ist eine klare und einfache Weise, den Inhalt für eine gute Lesbarkeit des Textes zu ordnen.'},
 pt:{dir:'ltr',lang:'pt',cased:true,comma:',',
- words:'o a os as um uma de em com por para sem sobre entre como muito mais mas porque quando onde aqui sempre nunca tudo nada texto palavra página conteúdo design leitura estilo fonte cor margem título ligação dados formulário imagem lista tabela botão janela código sistema projeto equipe tempo parte lugar mundo forma caso grupo ponto valor homem mulher criança cidade porta mesa livro papel caneta luz dia noite ano mão rosto rua carro trem árvore flor céu mar sol lua água terra fogo ar música cinema arte jogo festa amigo amor vida sonho cama cadeira pão café'.split(' '),
- classic:'o design da página é uma forma clara e simples de ordenar o conteúdo para'.split(' '),
- start:'O design da página é uma forma clara e simples de ordenar o conteúdo para uma boa leitura do texto.'},
+ words:'o a os as um uma de em com por para sem sobre entre como muito mais mas porque quando onde aqui sempre nunca tudo nada texto palavra página conteúdo design leitura estilo fonte cor margem título ligação dados formulário imagem lista tabela botão janela código sistema projeto equipe tempo parte lugar mundo forma caso grupo ponto valor homem mulher criança cidade porta mesa livro papel caneta luz dia noite ano mão rosto rua carro trem árvore flor céu mar sol lua água terra fogo ar música cinema arte jogo festa amigo amor vida sonho cama cadeira pão café lorem lorem lorem'.split(' '),
+ classic:'lorem ipsum o design da página é uma forma clara e simples de ordenar o conteúdo para'.split(' '),
+ start:'Lorem ipsum, o design da página é uma forma clara e simples de ordenar o conteúdo para uma boa leitura do texto.'},
 fa:{dir:'rtl',lang:'fa',cased:false,comma:'،',
- words:'متن واژه صفحه محتوا طراحی خواندن سبک قلم رنگ حاشیه عنوان پیوند داده فرم تصویر فهرست جدول دکمه پنجره کد سامانه پروژه گروه زمان بخش مکان شکل مورد نکته مقدار نمونه ساده زیبا روشن تاریک تازه آسان دشوار بزرگ کوچک تند آهسته پنهان آشکار خوب مرد زن کودک شهر در میز کتاب دفتر کاغذ نور روز شب سال دست چهره خیابان درخت آسمان دریا خورشید ماه آب باد آتش خاک موسیقی هنر بازی جشن دوست عشق زندگی خواب نان چای خانه کلید راز قصه شعر فکر حافظه ذهن قلب چشم گوش صدا کاربر دستگاه پیام دیدگاه یادداشت جست\u200Cوجو بازخورد چیدمان و با از به که را بر تا اما چون اگر نیز هم خیلی کم بسیار همیشه هرگز دیروز امروز فردا حالا زود دیر می\u200Cشود می\u200Cگوید باشد بود'.split(' '),
- classic:'طراحی صفحه شکلی روشن و ساده برای چیدن محتواست و خوانایی متن را آسان می\u200Cکند'.split(' '),
- start:'طراحیِ صفحه، شکلی روشن و ساده برای چیدنِ محتواست و خواناییِ متن را آسان می\u200Cکند.'}
+ words:'متن واژه صفحه محتوا طراحی خواندن سبک قلم رنگ حاشیه عنوان پیوند داده فرم تصویر فهرست جدول دکمه پنجره کد سامانه پروژه گروه زمان بخش مکان شکل مورد نکته مقدار نمونه ساده زیبا روشن تاریک تازه آسان دشوار بزرگ کوچک تند آهسته پنهان آشکار خوب مرد زن کودک شهر در میز کتاب دفتر کاغذ نور روز شب سال دست چهره خیابان درخت آسمان دریا خورشید ماه آب باد آتش خاک موسیقی هنر بازی جشن دوست عشق زندگی خواب نان چای خانه کلید راز قصه شعر فکر حافظه ذهن قلب چشم گوش صدا کاربر دستگاه پیام دیدگاه یادداشت جست\u200Cوجو بازخورد چیدمان و با از به که را بر تا اما چون اگر نیز هم خیلی کم بسیار همیشه هرگز دیروز امروز فردا حالا زود دیر می\u200Cشود می\u200Cگوید باشد بود لورم لورم لورم ایپسوم'.split(' '),
+ classic:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است'.split(' '),
+ start:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.'}
 };
 
 const TYPES={

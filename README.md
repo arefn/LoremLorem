@@ -13,8 +13,10 @@ click, and phones home to absolutely no one.
 
 ## Features
 
-- **Six languages** — classic Latin (`lorem ipsum…`), Español, Français, Deutsch,
-  Português, and فارسی (Persian) with full right-to-left rendering
+- **Seven languages** — classic Latin (`lorem ipsum…`), English, Español,
+  Français, Deutsch, Português, and فارسی (Persian) with full right-to-left
+  rendering — every language peppers its text with *lorem* / **لورم** so it
+  always reads as placeholder
 - **Five output shapes** — paragraphs, sentences, words, bullet lists, and
   byte-exact chunks (UTF-8 aware, so Persian counts correctly)
 - **Classic opening** — every language has its own canonical first sentence
