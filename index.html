@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lorem Lorem · offline lorem-ipsum generator</title>
+<meta name="description" content="A tiny, private, offline lorem-ipsum generator. Six languages including Persian. Everything happens in your browser — no tracking, no cookies, no network calls.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f4efe5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131010" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lorem Lorem">
+<meta property="og:description" content="Offline, private lorem-ipsum generator — six languages including Persian, five output shapes, one file.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23b45309'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-style='italic' font-weight='bold' font-size='32' fill='%23fdf6ec' text-anchor='middle'%3EL%C2%B7L%3C/text%3E%3C/svg%3E">
+<!-- The only external references on the page: optional webfonts (display serif + Persian).
+     Block them or go offline and the app keeps working on system fonts. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+<script>/* set theme before first paint */try{var t=localStorage.getItem('ll-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){document.documentElement.dataset.theme='light'}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;
+  --serif:"Fraunces","Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --fa:"Vazirmatn","Segoe UI",Tahoma,sans-serif;
+  --bg:#f4efe5;--card:#fffdf8;--ink:#2b241e;--muted:#8a7f70;--line:#e5dbc8;
+  --accent:#b45309;--on-accent:#fffdf8;--accent-soft:rgba(180,83,9,.09);--ok:#3f7d4e;
+  --shadow:0 1px 2px rgba(74,52,21,.05),0 16px 40px -28px rgba(74,52,21,.4);
+  --grain-op:.5;
+}
+[data-theme="dark"]{
+  --bg:#131010;--card:#1d1a16;--ink:#ece5db;--muted:#a79c8e;--line:#372f27;
+  --accent:#e2a13a;--on-accent:#241503;--accent-soft:rgba(226,161,58,.12);--ok:#7fc08c;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 18px 44px -28px rgba(0,0,0,.8);
+  --grain-op:.35;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background-color:var(--bg);background-image:radial-gradient(1100px 460px at 50% -140px,rgba(180,83,9,.07),transparent 70%);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+[data-theme="dark"] body{background-image:radial-gradient(1100px 460px at 50% -140px,rgba(226,161,58,.07),transparent 70%)}
+/* faint paper grain over everything */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:999;opacity:var(--grain-op);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.5'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+@media print{body::before{display:none}}
+::selection{background:rgba(180,83,9,.25)}
+[data-theme="dark"] ::selection{background:rgba(226,161,58,.3)}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.wrap{max-width:47rem;margin:0 auto;padding:2.75rem 1.35rem 3.25rem}
+.wrap>*{animation:rise .55s cubic-bezier(.2,.7,.25,1) both}
+.wrap>*:nth-child(2){animation-delay:.06s}
+.wrap>*:nth-child(3){animation-delay:.12s}
+.wrap>*:nth-child(4){animation-delay:.18s}
+.wrap>*:nth-child(5){animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.kicker{margin:0 0 .55rem;font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.kicker .dot{color:var(--accent);margin:0 .3em}
+h1{font-family:var(--serif);font-weight:550;font-size:clamp(2.5rem,7vw,3.4rem);letter-spacing:-.015em;line-height:1;margin:0;font-variation-settings:"opsz" 100}
+h1 em{color:var(--accent);font-style:italic}
+.tagline{margin:.6rem 0 0;color:var(--muted);font-size:.95rem}
+.iconbtn{display:inline-flex;align-items:center;justify-content:center;flex:none;width:2.4rem;height:2.4rem;border:1px solid var(--line);border-radius:.7rem;background:var(--card);color:var(--ink);cursor:pointer;transition:border-color .15s,color .15s,transform .1s}
+.iconbtn:hover{border-color:var(--accent);color:var(--accent)}
+.iconbtn:active{transform:scale(.93)}
+.iconbtn svg{transition:transform .45s ease}
+.iconbtn:hover svg{transform:rotate(35deg)}
+.i-sun{display:none}
+[data-theme="dark"] .i-sun{display:block}
+[data-theme="dark"] .i-moon{display:none}
+.noscript{margin:0 0 1rem;padding:.8rem 1rem;border-radius:.8rem;background:#b45309;color:#fff;text-align:center;font-size:.9rem}
+.privacy{display:flex;align-items:center;gap:.6rem;margin:1.6rem 0 1.15rem;padding:.55rem 1rem;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--muted);font-size:.85rem;box-shadow:var(--shadow)}
+.privacy svg{flex:none;color:var(--ok)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:1.1rem;padding:1.5rem;box-shadow:var(--shadow)}
+.card+.card{margin-top:1.1rem}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 1.75rem}
+.field.full{grid-column:1/-1;margin-bottom:1.5rem}
+.lbl{display:block;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem}
+.pills{display:flex;flex-wrap:wrap;gap:.45rem}
+.pills input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+.pills label{padding:.42rem .85rem;border:1px solid var(--line);border-radius:999px;font-size:.92rem;cursor:pointer;user-select:none;background:transparent;transition:border-color .15s,background .15s,color .15s}
+.pills label:hover{border-color:var(--accent);color:var(--accent)}
+.pills input:checked+label{background:var(--accent);border-color:var(--accent);color:var(--on-accent);box-shadow:0 4px 14px -8px var(--accent)}
+.pills input:checked+label::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;margin-right:.45em;vertical-align:.12em}
+.pills input:focus-visible+label{outline:2px solid var(--accent);outline-offset:2px}
+label.fa{font-family:var(--fa)}
+.amount-row{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-bottom:.6rem}
+.stepper{display:inline-flex;align-items:stretch;border:1px solid var(--line);border-radius:.7rem;background:var(--card);overflow:hidden}
+.stepper button{width:2.5rem;min-height:2.5rem;border:0;background:transparent;color:var(--muted);font-size:1.15rem;font-family:inherit;cursor:pointer;transition:background .15s,color .15s}
+.stepper button:hover{background:var(--accent-soft);color:var(--accent)}
+.stepper button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.stepper .val{display:flex;align-items:center;border-left:1px solid var(--line);border-right:1px solid var(--line)}
+#amount{width:7ch;border:0;background:transparent;text-align:center;font:inherit;font-size:1rem;color:var(--ink);padding:.5rem .2rem;font-variant-numeric:tabular-nums}
+#amount:focus{outline:none}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+input[type=number]{-moz-appearance:textfield;appearance:textfield}
+.hint{color:var(--muted);font-size:.85rem}
+.slider{-webkit-appearance:none;appearance:none;width:100%;height:22px;background:transparent;cursor:pointer;margin:0}
+.slider::-webkit-slider-runnable-track{height:3px;border-radius:2px;background:var(--line)}
+.slider::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:15px;border-radius:50%;background:var(--accent);border:2px solid var(--card);box-shadow:0 1px 3px rgba(0,0,0,.3);margin-top:-6px;transition:transform .15s}
+.slider::-webkit-slider-thumb:hover{transform:scale(1.18)}
+.slider::-moz-range-track{height:3px;border-radius:2px;background:var(--line)}
+.slider::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--card)}
+.slider:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.opts{grid-column:1/-1;display:flex;gap:1.2rem 2rem;flex-wrap:wrap;align-items:center;border:1px dashed var(--line);border-radius:.8rem;padding:1rem 1.15rem}
+.switch{display:inline-flex;align-items:center;gap:.6rem;cursor:pointer;font-size:.93rem}
+.switch input{position:absolute;opacity:0;width:1px;height:1px}
+.track{flex:none;width:2.35rem;height:1.32rem;border-radius:999px;background:var(--line);position:relative;transition:background .18s}
+.track::after{content:"";position:absolute;top:3px;left:3px;width:calc(1.32rem - 6px);height:calc(1.32rem - 6px);border-radius:50%;background:var(--card);box-shadow:0 1px 3px rgba(0,0,0,.3);transition:transform .18s ease}
+.switch input:checked+.track{background:var(--accent)}
+.switch input:checked+.track::after{transform:translateX(calc(2.35rem - 1.32rem))}
+.switch input:focus-visible+.track{outline:2px solid var(--accent);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.6rem 1.05rem;border:1px solid var(--line);border-radius:.7rem;background:var(--card);color:var(--ink);font:inherit;font-weight:600;font-size:.92rem;cursor:pointer;transition:border-color .15s,color .15s,filter .15s,transform .1s}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn:active{transform:translateY(1px)}
+.btn.primary,.btn.soft{text-transform:uppercase;letter-spacing:.12em;font-size:.76rem;font-weight:700}
+.btn.primary{width:100%;margin-top:1.6rem;padding:.85rem;background:var(--accent);border-color:var(--accent);color:var(--on-accent);box-shadow:0 12px 28px -16px var(--accent)}
+.btn.primary:hover{filter:brightness(1.07);color:var(--on-accent)}
+.btn.primary svg{transition:transform .4s ease}
+.btn.primary:hover svg{transform:rotate(180deg)}
+.btn.soft{background:var(--accent-soft);border-color:transparent;color:var(--accent)}
+.btn.soft:hover{border-color:var(--accent)}
+.btn .i-check{display:none}
+.btn.ok{border-color:var(--ok);color:var(--ok);background:transparent}
+.btn.ok .i-copy{display:none}
+.btn.ok .i-check{display:inline}
+kbd{font-family:var(--mono);font-size:.66rem;padding:.12rem .38rem;border:1px solid var(--line);border-bottom-width:2px;border-radius:.35rem;background:var(--bg);color:var(--muted)}
+.btn.primary kbd{background:transparent;border-color:currentColor;color:inherit;opacity:.65}
+.outhead{display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem}
+.outhead .lbl{margin:0}
+#out{margin:0;font-family:var(--serif);font-size:1.05rem;line-height:1.8;white-space:pre-wrap;overflow-wrap:break-word;user-select:all;cursor:pointer;min-height:9rem}
+#out.code{font-family:var(--mono);font-size:.86rem;line-height:1.65}
+#out[lang="fa"]{font-family:var(--fa);line-height:2.15}
+#out.drop::first-letter{float:left;font-family:var(--serif);font-size:3.3em;line-height:.8;padding:.04em .14em 0 0;color:var(--accent);font-weight:600}
+#out.flash{animation:pop .22s ease}
+@keyframes pop{from{opacity:.2;transform:translateY(2px)}to{opacity:1;transform:none}}
+.outfoot{display:flex;justify-content:space-between;align-items:center;gap:.75rem;flex-wrap:wrap;border-top:1px dashed var(--line);margin-top:1.2rem;padding-top:.85rem;font-size:.78rem;color:var(--muted)}
+#stats{font-variant-numeric:tabular-nums}
+.toast{position:fixed;left:50%;bottom:1.6rem;transform:translate(-50%,250%);background:var(--ink);color:var(--bg);padding:.6rem 1.15rem;border-radius:999px;font-size:.9rem;box-shadow:0 8px 30px rgba(0,0,0,.25);backdrop-filter:blur(6px);transition:transform .28s ease;z-index:1000;max-width:90vw}
+.toast.show{transform:translate(-50%,0)}
+footer{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:.85rem;line-height:1.9}
+footer a{color:inherit}
+footer a:hover{color:var(--accent)}
+.orn{margin:0 0 .35rem;color:var(--accent);font-family:var(--serif);font-size:1.2rem}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+@media (max-width:640px){.grid{grid-template-columns:1fr}.card{padding:1.1rem}.wrap{padding-top:1.9rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <noscript><p class="noscript">Lorem Lorem needs JavaScript to generate text — everything runs locally in your browser.</p></noscript>
+
+  <header>
+    <div>
+      <p class="kicker">Six languages<span class="dot">·</span>five shapes<span class="dot">·</span>zero servers</p>
+      <h1>lorem <em>lorem</em></h1>
+      <p class="tagline">A tiny lorem-ipsum generator that never leaves your browser.</p>
+    </div>
+    <button type="button" id="themeBtn" class="iconbtn" aria-label="Toggle dark / light theme">
+      <svg class="i-moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </header>
+
+  <p class="privacy">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 11.5 11 13.5 15 9.5"/></svg>
+    Runs 100% in your browser — no tracking, no cookies, no network calls.
+  </p>
+
+  <main>
+    <section class="card" aria-label="Generator options">
+      <div class="field full">
+        <span class="lbl">Language</span>
+        <div class="pills" role="radiogroup" aria-label="Language">
+          <input type="radio" name="lang" id="l-la" value="latin" checked><label for="l-la">Latin</label>
+          <input type="radio" name="lang" id="l-es" value="es"><label for="l-es">Español</label>
+          <input type="radio" name="lang" id="l-fr" value="fr"><label for="l-fr">Français</label>
+          <input type="radio" name="lang" id="l-de" value="de"><label for="l-de">Deutsch</label>
+          <input type="radio" name="lang" id="l-pt" value="pt"><label for="l-pt">Português</label>
+          <input type="radio" name="lang" id="l-fa" value="fa"><label for="l-fa" class="fa" lang="fa">فارسی</label>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="field">
+          <span class="lbl">Output</span>
+          <div class="pills" role="radiogroup" aria-label="Output type">
+            <input type="radio" name="type" id="t-paragraphs" value="paragraphs" checked><label for="t-paragraphs">Paragraphs</label>
+            <input type="radio" name="type" id="t-sentences" value="sentences"><label for="t-sentences">Sentences</label>
+            <input type="radio" name="type" id="t-words" value="words"><label for="t-words">Words</label>
+            <input type="radio" name="type" id="t-list" value="list"><label for="t-list">List</label>
+            <input type="radio" name="type" id="t-bytes" value="bytes"><label for="t-bytes">Bytes</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="lbl">Amount</span>
+          <div class="amount-row">
+            <div class="stepper" role="group" aria-label="Amount stepper">
+              <button type="button" id="minus" aria-label="Decrease amount">&minus;</button>
+              <span class="val"><input type="number" id="amount" value="3" min="1" max="50" step="1" inputmode="numeric" aria-label="Amount"></span>
+              <button type="button" id="plus" aria-label="Increase amount">+</button>
+            </div>
+            <span class="hint" id="unit">paragraphs</span>
+          </div>
+          <input type="range" id="range" class="slider" value="3" min="1" max="50" step="1" aria-label="Amount slider">
+        </div>
+
+        <div class="opts">
+          <label class="switch">
+            <input type="checkbox" id="optClassic" checked>
+            <span class="track" aria-hidden="true"></span>
+            <span>Start with the classic line</span>
+          </label>
+          <label class="switch">
+            <input type="checkbox" id="optHtml">
+            <span class="track" aria-hidden="true"></span>
+            <span>Wrap in HTML tags</span>
+          </label>
+        </div>
+      </div>
+
+      <button type="button" id="genBtn" class="btn primary" aria-keyshortcuts="r">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Generate <kbd>R</kbd>
+      </button>
+    </section>
+
+    <section class="card" aria-label="Generated text">
+      <div class="outhead">
+        <span class="lbl">Output</span>
+        <button type="button" id="copyBtn" class="btn soft" aria-keyshortcuts="c">
+          <svg class="i-copy" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg class="i-check" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Copy</span> <kbd>C</kbd>
+        </button>
+      </div>
+      <div id="out" class="out" tabindex="0" title="Click to select all"></div>
+      <div class="outfoot">
+        <span id="stats"></span>
+        <span>Click the text to select all</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="orn" aria-hidden="true">¶</p>
+    <p>No cookies · No analytics · Works offline after load</p>
+    <p>MIT © 2026 <a href="https://github.com/arefnorouzzadeh">Aref Norouzzadeh</a> · built with GLM 5.3 · <a href="https://github.com/arefnorouzzadeh/LoremLorem">Source on GitHub</a></p>
+  </footer>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script>
+'use strict';
+/* Word pools — everything below runs locally; no data ever leaves the page. */
+const POOLS={
+latin:{dir:'ltr',lang:'la',cased:true,comma:',',
+ words:'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip ex ea commodo consequat duis aute irure in reprehenderit voluptate velit esse cillum eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt culpa qui officia deserunt mollit anim id est curabitur pretium tincidunt lacus laoreet sodales tortor interdum augue suspendisse blandit hendrerit lobortis vivamus vestibulum diam urna curae pharetra molestie arcu morbi sem mi faucibus rutrum aenean primis ornare mollis phasellus bibendum natoque penatibus sociis nascetur ridiculus mus'.split(' '),
+ classic:'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'.split(' '),
+ start:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
+es:{dir:'ltr',lang:'es',cased:true,comma:',',
+ words:'el la los las un una de en con por para sin sobre entre como muy más pero porque cuando donde aquí siempre nunca todo nada algo alguien palabra texto página contenido diseño lectura estilo fuente color margen título enlace datos formulario imagen lista tabla botón ventana código sistema proyecto equipo tiempo parte lugar mundo forma caso grupo punto hombre mujer niño ciudad casa puerta mesa libro papel pluma luz día noche año mano cara calle coche tren árbol flor cielo mar sol luna agua tierra fuego aire música cine arte juego fiesta amigo amor vida sueño cama silla comida pan café'.split(' '),
+ classic:'el diseño de la página es una forma clara y sencilla de ordenar el contenido para'.split(' '),
+ start:'El diseño de la página es una forma clara y sencilla de ordenar el contenido para una buena lectura del texto.'},
+fr:{dir:'ltr',lang:'fr',cased:true,comma:',',
+ words:'le la les un une des de en avec pour par sans sur entre comme très plus mais parce quand ici toujours jamais tout rien quelque texte mot page contenu design lecture style police couleur marge titre lien données formulaire image liste tableau bouton fenêtre code système projet équipe temps partie lieu monde forme cas groupe point valeur homme femme enfant ville porte table livre papier plume lumière jour nuit année main visage rue voiture train arbre fleur ciel mer soleil lune eau terre feu air musique cinéma art jeu fête ami amour vie rêve lit chaise pain café'.split(' '),
+ classic:'le design de la page est une manière claire et simple d’ordonner le contenu pour'.split(' '),
+ start:'Le design de la page est une manière claire et simple d’ordonner le contenu pour une bonne lecture du texte.'},
+de:{dir:'ltr',lang:'de',cased:true,comma:',',
+ words:'der die das ein eine den dem des mit für von ohne über unter zwischen wie sehr mehr aber weil wenn hier immer nie alles nichts Text Wort Seite Inhalt Gestaltung Lesart Stil Schrift Farbe Rand Titel Link Daten Formular Bild Liste Tabelle Knopf Fenster Code System Projekt Team Zeit Teil Ort Welt Form Fall Gruppe Punkt Wert Bereich Mann Frau Kind Stadt Tür Tisch Buch Heft Papier Feder Licht Tag Nacht Jahr Hand Gesicht Straße Zug Baum Blume Himmel Meer Sonne Mond Wasser Erde Feuer Luft Musik Spiel Fest Freund Liebe Leben Traum Bett Stuhl Brot'.split(' '),
+ classic:'Das Design der Seite ist eine klare und einfache Weise den Inhalt für eine gute Lesbarkeit'.split(' '),
+ start:'Das Design der Seite ist eine klare und einfache Weise, den Inhalt für eine gute Lesbarkeit des Textes zu ordnen.'},
+pt:{dir:'ltr',lang:'pt',cased:true,comma:',',
+ words:'o a os as um uma de em com por para sem sobre entre como muito mais mas porque quando onde aqui sempre nunca tudo nada texto palavra página conteúdo design leitura estilo fonte cor margem título ligação dados formulário imagem lista tabela botão janela código sistema projeto equipe tempo parte lugar mundo forma caso grupo ponto valor homem mulher criança cidade porta mesa livro papel caneta luz dia noite ano mão rosto rua carro trem árvore flor céu mar sol lua água terra fogo ar música cinema arte jogo festa amigo amor vida sonho cama cadeira pão café'.split(' '),
+ classic:'o design da página é uma forma clara e simples de ordenar o conteúdo para'.split(' '),
+ start:'O design da página é uma forma clara e simples de ordenar o conteúdo para uma boa leitura do texto.'},
+fa:{dir:'rtl',lang:'fa',cased:false,comma:'،',
+ words:'متن واژه صفحه محتوا طراحی خواندن سبک قلم رنگ حاشیه عنوان پیوند داده فرم تصویر فهرست جدول دکمه پنجره کد سامانه پروژه گروه زمان بخش مکان شکل مورد نکته مقدار نمونه ساده زیبا روشن تاریک تازه آسان دشوار بزرگ کوچک تند آهسته پنهان آشکار خوب مرد زن کودک شهر در میز کتاب دفتر کاغذ نور روز شب سال دست چهره خیابان درخت آسمان دریا خورشید ماه آب باد آتش خاک موسیقی هنر بازی جشن دوست عشق زندگی خواب نان چای خانه کلید راز قصه شعر فکر حافظه ذهن قلب چشم گوش صدا کاربر دستگاه پیام دیدگاه یادداشت جست\u200Cوجو بازخورد چیدمان و با از به که را بر تا اما چون اگر نیز هم خیلی کم بسیار همیشه هرگز دیروز امروز فردا حالا زود دیر می\u200Cشود می\u200Cگوید باشد بود'.split(' '),
+ classic:'طراحی صفحه شکلی روشن و ساده برای چیدن محتواست و خوانایی متن را آسان می\u200Cکند'.split(' '),
+ start:'طراحیِ صفحه، شکلی روشن و ساده برای چیدنِ محتواست و خواناییِ متن را آسان می\u200Cکند.'}
+};
+
+const TYPES={
+ paragraphs:{min:1,max:50,step:1,def:3,unit:'paragraphs'},
+ sentences:{min:1,max:100,step:1,def:5,unit:'sentences'},
+ words:{min:1,max:999,step:1,def:50,unit:'words'},
+ list:{min:1,max:100,step:1,def:6,unit:'list items'},
+ bytes:{min:50,max:10000,step:50,def:300,unit:'bytes (UTF-8)'}
+};
+
+const state={lang:'latin',type:'paragraphs',amount:3,classic:true,html:false};
+const $=s=>document.querySelector(s);
+const out=$('#out'),stats=$('#stats'),amount=$('#amount'),unit=$('#unit'),range=$('#range');
+const rand=n=>Math.floor(Math.random()*n);
+const pick=a=>a[rand(a.length)];
+
+function makeSentence(p){
+ const n=6+rand(9),w=[];
+ for(let i=0;i<n;i++)w.push(pick(p.words));
+ if(Math.random()<.5)w[1+rand(n-2)]+=p.comma;
+ let s=w.join(' ');
+ if(p.cased)s=s[0].toUpperCase()+s.slice(1);
+ return s+'.';
+}
+function makeParagraph(p,withStart){
+ const m=3+rand(5),s=[];
+ if(withStart)s.push(p.start);
+ while(s.length<m)s.push(makeSentence(p));
+ return s.join(' ');
+}
+function bytesText(p,n){ /* byte-exact on word boundaries, UTF-8 aware (Persian counts correctly) */
+ const enc=new TextEncoder(),pre=state.classic?p.classic:[];
+ let i=0;const next=()=>i<pre.length?pre[i++]:pick(p.words);
+ const w=[];let c=0;
+ while(c<n){
+   const x=next(),b=enc.encode(x).length+(w.length?1:0);
+   if(c+b>n&&w.length)break;
+   w.push(x);c+=b;
+ }
+ return w.join(' ');
+}
+function htmlWrap(text,t){
+ if(t==='paragraphs')return text.split('\n\n').map(s=>'<p>'+s+'</p>').join('\n\n');
+ if(t==='list')return '<ul>\n'+text.split('\n').map(s=>'  <li>'+s+'</li>').join('\n')+'\n</ul>';
+ return '<p>'+text+'</p>';
+}
+function build(){
+ const p=POOLS[state.lang],n=state.amount,t=state.type;
+ let text='';
+ if(t==='paragraphs'){
+   const a=[];for(let i=0;i<n;i++)a.push(makeParagraph(p,i===0&&state.classic));
+   text=a.join('\n\n');
+ }else if(t==='sentences'){
+   const a=[];for(let i=0;i<n;i++)a.push(i===0&&state.classic?p.start:makeSentence(p));
+   text=a.join(' ');
+ }else if(t==='words'){
+   const a=state.classic?p.classic.slice(0,Math.min(p.classic.length,n)):[];
+   while(a.length<n)a.push(pick(p.words));
+   text=a.slice(0,n).join(' ');
+ }else if(t==='list'){
+   const a=[];
+   for(let i=0;i<n;i++){
+     if(i===0&&state.classic){a.push(p.classic.slice(0,3).join(' '));continue}
+     const k=2+rand(4),w=[];
+     for(let j=0;j<k;j++)w.push(pick(p.words));
+     a.push(w.join(' '));
+   }
+   text=a.join('\n');
+ }else text=bytesText(p,n);
+ if(state.html)text=htmlWrap(text,t);
+ return text;
+}
+
+let current='';
+function render(text){
+ current=text;
+ const p=POOLS[state.lang];
+ out.classList.toggle('code',state.html);
+ out.classList.toggle('drop',!state.html&&(state.type==='paragraphs'||state.type==='sentences'||state.type==='words')&&p.dir==='ltr');
+ if(p.dir==='rtl'){out.setAttribute('dir','rtl');out.setAttribute('lang',p.lang)}
+ else{out.removeAttribute('dir');out.removeAttribute('lang')}
+ out.textContent=text;
+ const plain=text.replace(/<[^>]+>/g,' ');
+ const wc=plain.trim()?plain.trim().split(/\s+/).length:0;
+ stats.textContent=wc+' words · '+plain.length+' characters';
+ out.classList.remove('flash');void out.offsetWidth;out.classList.add('flash');
+}
+function syncState(){
+ state.lang=document.querySelector('input[name="lang"]:checked').value;
+ state.type=document.querySelector('input[name="type"]:checked').value;
+ state.classic=$('#optClassic').checked;
+ state.html=$('#optHtml').checked;
+ const t=TYPES[state.type];
+ let v=parseInt(amount.value,10);
+ if(!Number.isFinite(v))v=t.def;
+ state.amount=Math.min(t.max,Math.max(t.min,v));
+}
+function regen(){syncState();amount.value=state.amount;range.value=state.amount;render(build())}
+function applyType(){
+ const t=TYPES[document.querySelector('input[name="type"]:checked').value];
+ amount.min=t.min;amount.max=t.max;amount.step=t.step;amount.value=t.def;
+ range.min=t.min;range.max=t.max;range.step=t.step;range.value=t.def;
+ unit.textContent=t.unit;
+}
+
+/* wiring */
+document.addEventListener('change',e=>{
+ const el=e.target;
+ if(el.type==='radio'||el.type==='checkbox'){
+   if(el.name==='type')applyType();
+   regen();
+ }
+});
+let deb;amount.addEventListener('input',()=>{clearTimeout(deb);deb=setTimeout(regen,220)});
+range.addEventListener('input',()=>{amount.value=range.value;regen()});
+$('#minus').addEventListener('click',()=>{const t=TYPES[state.type];amount.value=Math.max(t.min,(parseInt(amount.value,10)||t.def)-t.step);regen()});
+$('#plus').addEventListener('click',()=>{const t=TYPES[state.type];amount.value=Math.min(t.max,(parseInt(amount.value,10)||t.def)+t.step);regen()});
+$('#genBtn').addEventListener('click',regen);
+
+const copyBtn=$('#copyBtn'),copyTxt=copyBtn.querySelector('span');
+let copyT,toastT;
+async function doCopy(){
+ if(!current)return;
+ let ok=true;
+ try{await navigator.clipboard.writeText(current)}
+ catch(err){ok=legacyCopy(current)}
+ if(!ok){toast('Copy failed — select the text and press ⌘/Ctrl+C');return}
+ copyBtn.classList.add('ok');copyTxt.textContent='Copied';
+ clearTimeout(copyT);copyT=setTimeout(()=>{copyBtn.classList.remove('ok');copyTxt.textContent='Copy'},1500);
+ toast('Copied to clipboard');
+}
+function legacyCopy(t){
+ const ta=document.createElement('textarea');
+ ta.value=t;ta.setAttribute('readonly','');
+ ta.style.cssText='position:fixed;top:-999px';
+ document.body.appendChild(ta);ta.select();
+ let ok=false;try{ok=document.execCommand('copy')}catch(e){}
+ ta.remove();return ok;
+}
+copyBtn.addEventListener('click',doCopy);
+function toast(m){
+ const el=$('#toast');el.textContent=m;el.classList.add('show');
+ clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),1700);
+}
+$('#themeBtn').addEventListener('click',()=>{
+ const next=document.documentElement.dataset.theme==='dark'?'light':'dark';
+ document.documentElement.dataset.theme=next;
+ try{localStorage.setItem('ll-theme',next)}catch(e){}
+});
+addEventListener('keydown',e=>{
+ if(e.metaKey||e.ctrlKey||e.altKey)return;
+ const a=e.target;
+ if(a&&(a.tagName==='INPUT'||a.tagName==='TEXTAREA'||a.tagName==='SELECT'||a.isContentEditable))return;
+ const k=e.key.toLowerCase();
+ if(k==='c'){e.preventDefault();doCopy()}
+ else if(k==='r'){e.preventDefault();regen()}
+});
+
+applyType();
+regen();
+</script>
+</body>
+</html>
