@@ -1,8 +1,5 @@
 # Lorem Lorem
 
-> A tiny, private, offline lorem-ipsum generator.
-> Everything happens in your browser — nothing ever leaves it.
-
 ## Why “Lorem Lorem”?
 
 Because once is never enough when you're filling in a design. Lorem Lorem is a
